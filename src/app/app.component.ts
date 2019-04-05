@@ -21,7 +21,7 @@ export class AppComponent implements OnInit{
     // alert(JSON.stringify(feedbackData));
     let data = {isbn: feedbackData.isbn , title : feedbackData.title, price: feedbackData.price};
     this.http.post<any>('http://localhost:3000/api',data).subscribe(result =>{
-    //  alert(JSON.stringify(result));
+     alert(JSON.stringify(result));
      this.getvalut();
     });
   }

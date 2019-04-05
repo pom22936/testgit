@@ -44,8 +44,8 @@ app.get('/api/get', (req,res)=>{
 });
 
 app.get('/api/get/:id',(req,res)=>{
-  const id = req.body.id;
-  ProductModel.findById((err,doc)=>{
+  var id = req.params.id;
+  ProductModel.findById(id,(err,doc)=>{
     if(err) res.json({result: "failed"});
 
     res.json({result: "succress" , data:doc});
@@ -58,9 +58,12 @@ app.put('/api/update/:id',(req,res)=>{
   });
 });
 
-app.delete('/api/del',(req,res)=>{
-  ProductModel.findOneAndDelete((err,doc)=>{
+app.delete('/api/del/:id',(req,res)=>{
+  var id = req.params.id;
+  ProductModel.findByIdAndDelete(id,(err,doc)=>{
+    if(err) res.json({result: "failed"});
 
+    res.json({result: "delete succress" , data:doc});
   });
 });
 
