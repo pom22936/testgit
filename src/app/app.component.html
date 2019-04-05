@@ -2,11 +2,15 @@
 <form #feedbackFrom="ngForm" (submit)="onSubmit(feedbackFrom.value)">
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input ngModel name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <input ngModel name="isbn" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
   </div>
   <div class="form-group">
-    <label for="Feedback">Feedback</label>
-    <input ngModel name="feedback" type="text" class="form-control" id="Feedback" placeholder="Feedback">
+    <label for="title">Feedback</label>
+    <input ngModel name="title" type="text" class="form-control" id="title" placeholder="title">
+  </div>
+  <div class="form-group">
+    <label for="price">Price</label>
+    <input ngModel name="price" type="text" class="form-control" id="price" placeholder="price">
   </div>
   <button  type="submit" class="btn btn-primary">Submit</button>
 </form>
@@ -14,9 +18,24 @@
 <hr>
 <div>
   <p>all data</p>
-  <ul>
-    <li *ngFor="let item of mData">{{item.isbn}}</li>
-  </ul>
+  <table class="table">
+    <thead>
+      <th>isbn</th>
+      <th>title</th>
+      <th>price</th>
+      <th>edit</th>
+      <th>del</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of mData">
+        <td>{{item.isbn}}</td>
+        <td>{{item.title}}</td>
+        <td>{{item.price}}</td>
+        <td><button>edit</button></td>
+        <td><button>del</button></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <router-outlet></router-outlet>

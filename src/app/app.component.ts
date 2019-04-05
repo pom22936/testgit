@@ -19,9 +19,9 @@ export class AppComponent implements OnInit{
 
   onSubmit(feedbackData){
     // alert(JSON.stringify(feedbackData));
-    let data = {username : feedbackData.username , feedback : feedbackData.feedback};
+    let data = {isbn: feedbackData.isbn , title : feedbackData.title, price: feedbackData.price};
     this.http.post<any>('http://localhost:3000/api',data).subscribe(result =>{
-     alert(JSON.stringify(result));
+    //  alert(JSON.stringify(result));
      this.getvalut();
     });
   }
@@ -30,6 +30,13 @@ export class AppComponent implements OnInit{
     this.http.get<any>('http://localhost:3000/api/get').subscribe(result => {
       // alert(JSON.stringify(result));
       this.mData = result.data;
+    });
+  }
+
+  getvaluebyid(id){
+    this.http.get<any>('http://localhost:3000/api/get/{id}').subscribe(result =>{
+      alert(JSON.stringify(result));
+      // this.mData = result.data;
     });
   }
 }
