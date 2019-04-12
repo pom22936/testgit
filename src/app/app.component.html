@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<form #feedbackFrom="ngForm" (submit)="onSubmit(feedbackFrom.value)">
+<form #feedbackFrom="ngForm" (submit)="onSubmit(feedbackFrom.value); feedbackFrom.reset()">
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input ngModel name="isbn" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -23,7 +23,8 @@
       <th>isbn</th>
       <th>title</th>
       <th>price</th>
-      <th>_v</th>
+      <th>_id</th>
+      <th>view</th>
       <th>edit</th>
       <th>del</th>
     </thead>
@@ -32,9 +33,10 @@
         <td>{{item.isbn}}</td>
         <td>{{item.title}}</td>
         <td>{{item.price}}</td>
-        <td>{{item.__v}}</td>
-        <td><button>edit</button></td>
-        <td><button>del</button></td>
+        <td>{{item._id}}</td>
+        <td><button (click)="getvaluebyid(item._id)">View</button></td>
+        <td><button (click)="updatevalue(item._id,onSubmit(feedbackFrom.value))">edit</button></td>
+        <td><button (click)="delvalue(item._id)">del</button></td>
       </tr>
     </tbody>
   </table>
